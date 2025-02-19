@@ -38,9 +38,8 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -e .
 ```
 
-### 4) Set Up Environment Variables & Configurations
-1. Create a `config` directory at the root level of the project.
-2. Place the JSON file `config/main-crow-418809-6fbb97b44180.json` inside the `config` directory.
+### 4) Set Up JSON file in Config for Google cloud credentials
+1. Place the JSON file `config/main-crow-418809-6fbb97b44180.json` inside the `config` directory.
 
 ### 5) Run the Data Pipeline
 Execute the following command to run the pipeline script:
