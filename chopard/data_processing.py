@@ -1,10 +1,8 @@
 import pandas as pd
-from chopard.data_ingestion import fetch_data_from_bigquery  # Import function
 
-def process_data():
+def process_data(df):
     """Process the fetched data by cleaning and filtering."""
-    df = fetch_data_from_bigquery()
-
+    
     # Filter relevant columns
     df = df[['brand', 'collection', 'price', 'currency', 'country', 'life_span_date', 'price_before', 'price_difference', 'price_changed']]
 
@@ -21,7 +19,7 @@ def process_data():
     df['country'] = df['currency'].map(currency_to_country)
 
     # Remove null values in key columns
-    df = df.dropna(subset=['price', 'price_before'])
+    df = df.dropna(how='any')  # Drops rows with *any* NaN values
 
     # Save cleaned data
     df.to_csv("data/processed_data.csv", index=False)
@@ -30,4 +28,6 @@ def process_data():
     return df
 
 if __name__ == "__main__":
-    process_data()
+    from chopard.data_ingestion import fetch_bigquery_data  # Import only when running directly
+    df = fetch_bigquery_data()
+    process_data(df)
