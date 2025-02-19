@@ -3,4 +3,4 @@ venv/
 build/
 dist/
 config/*.json
-config/*.env
+
