@@ -10,7 +10,7 @@ setup(
     author="Shaik Tanzeel Ahmed",
     author_email="shaiktanzeelahmed@gmail.com",
     description="A package for analyzing Chopard watch pricing data",
-    packages=find_packages(),  
-    install_requires=required_packages,  # Loads all dependencies from requirements.txt
+    packages=find_packages(),  # Finds all Python packages
+    install_requires=required_packages,  # Installs dependencies
     python_requires=">=3.7",
 )
