@@ -4,6 +4,7 @@ venv/
 # Personal Learning Guides (not for public repo)
 INTERVIEW_PREP_GUIDE.md
 POWERBI_GUIDE.md
+notebooks/Notes
 
 # Environment & Secrets
 .env
