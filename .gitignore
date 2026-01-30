@@ -1,0 +1,30 @@
+# Virtual Environment
+venv/
+
+# Personal Learning Guides (not for public repo)
+INTERVIEW_PREP_GUIDE.md
+POWERBI_GUIDE.md
+
+# Environment & Secrets
+.env
+config/service_account.json
+config/*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# Raw Data (large files)
+data/raw_chopard_data.csv.xlsx
+data/exchange_rates.json
+
+# Power BI files
+*.pbix

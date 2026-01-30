@@ -1,0 +1,24 @@
+============================================================
+CHOPARD PRICING ANALYSIS - EDA SUMMARY REPORT
+============================================================
+
+DATASET OVERVIEW
+  Total watches: 990
+  Collections: 7
+  Regions: 5
+
+PRICE SUMMARY (EUR)
+  Mean:   €30,294
+  Median: €18,486
+  Min:    €3,753
+  Max:    €110,000
+
+KEY INSIGHTS
+  1. HAPPY SPORT is the most popular collection (397 watches, 40.1% of catalog)
+  2. L'HEURE DU DIAMANT is the most expensive (avg €69,809)
+  3. France is 34.5% more expensive than Japan
+  4. Price distribution is highly right-skewed (many affordable, few ultra-luxury) (skewness: 1.11)
+  5. HAPPY SPORT has the widest price range (€104,747)
+
+============================================================
+Visualizations saved in: data/visualizations/

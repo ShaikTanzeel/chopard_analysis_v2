@@ -1,0 +1,155 @@
+# Chopard Pricing Analysis - EDA Notes
+
+## What We Have
+
+- **990 watches** in total after cleaning (started with 1,438 raw records)
+- **5 collections**: Happy Sport, Alpine Eagle, L'Heure du Diamant, L.U.C, Imperiale
+- **5 countries/regions**: Switzerland, USA, UK, Japan, EU
+- **5 currencies** converted to EUR for fair comparison
+
+
+---
+
+## Key Pricing Insights
+
+### 1. Price Range is Huge
+- Cheapest watch: Around 3,750 EUR
+- Most expensive: Around 110,000 EUR
+- That's a 30x difference between cheapest and most expensive!
+- **Question to think about:** What makes a watch worth 30x more? Materials? Diamonds? Brand positioning?
+
+
+### 2. Average vs Median Tells a Story
+- Average (Mean): ~30,000 EUR
+- Median: ~21,000 EUR
+- **Why the difference?** A few very expensive watches pull the average up. Most watches are actually below 21,000 EUR.
+- **Lesson:** Always look at median for prices, not just average. Average can be misleading.
+
+
+### 3. Distribution is Right-Skewed
+- Most watches are in the lower price range (10,000-30,000 EUR)
+- Only a few watches are super expensive (80,000+ EUR)
+- This is typical for luxury goods - many entry-level products, few ultra-luxury ones
+- **Makes sense:** Chopard wants to attract new customers with "affordable luxury" while having exclusive pieces for the wealthy
+
+
+---
+
+## Collection Insights
+
+### Most Expensive Collection: L'Heure du Diamant
+- Average price: ~70,000 EUR (highest)
+- This is Chopard's diamond-focused line
+- Makes sense - diamonds add significant cost
+
+### Most Popular Collection: Happy Sport
+- Highest number of watches in catalog
+- More accessible price point
+- Features the famous "dancing diamonds" in sapphire crystal
+- **Strategy insight:** This is Chopard's volume driver
+
+### Widest Price Range: L.U.C
+- Prices vary from ~10,000 to ~100,000 EUR
+- This collection has both entry-level and haute horlogerie pieces
+- **Question:** Same collection name, but very different target customers?
+
+
+---
+
+## Regional Pricing Insights
+
+### Prices Vary by Country
+- Same watch can cost different amounts in different countries
+- This is called "regional pricing strategy"
+
+### Why Do Prices Differ?
+1. **Taxes**: Different countries have different VAT/sales tax
+2. **Import duties**: Some countries charge more to import luxury goods
+3. **Currency hedging**: Companies protect against currency fluctuations
+4. **Market positioning**: What customers are willing to pay varies by country
+5. **Competition**: Price compared to other luxury brands in that market
+
+### Possible Arbitrage?
+- If a watch costs 10% less in Japan than Switzerland, could you buy there and sell here?
+- In practice, warranties, import duties, and authenticity concerns make this difficult
+- But it's a valid question interviewers might ask!
+
+
+---
+
+## Data Quality Observations
+
+### What We Cleaned
+- Removed ~450 records (31% of raw data) due to:
+  - NULL prices
+  - Missing currencies
+  - Duplicate entries (same watch, same country)
+  - Invalid price formats
+
+### What This Tells Us
+- Web-scraped data is messy
+- Always check for missing values FIRST
+- Duplicates can skew your analysis
+- **Interview point:** "I removed 31% of records during cleaning because..."
+
+
+---
+
+## Business Questions This Data Can Answer
+
+1. **Which collection should Chopard invest in?**
+   - Look at volume vs. profit margin by collection
+
+2. **Are prices consistent globally?**
+   - Compare same reference code across countries
+
+3. **Where is the biggest market?**
+   - Count watches by region
+
+4. **What's the "sweet spot" price?**
+   - Look at where most watches are priced
+
+
+---
+
+## Things That Made Me Think
+
+### 1. Why have different prices for the same watch?
+- A Rolex costs the same everywhere (more or less)
+- Why does Chopard vary prices by region?
+- Is this intentional strategy or just currency conversion?
+
+### 2. The 31% data loss
+- Losing 31% of data is significant
+- Were these real products with missing info, or scraping errors?
+- In a real job, I'd go back to the source to understand why
+
+### 3. Collection naming
+- "Happy Sport" sounds fun and accessible
+- "L'Heure du Diamant" sounds expensive (it's French!)
+- Naming is part of pricing strategy
+
+### 4. The long tail of luxury
+- Few watches above 80,000 EUR, but they exist
+- These aren't meant to sell in volume
+- They build brand prestige ("halo effect")
+
+
+---
+
+## What I Can Say in an Interview
+
+"I analyzed Chopard's pricing across 5 regions and found that prices vary significantly - not just by collection, but by country. The L'Heure du Diamant collection averages 70,000 EUR due to diamond content, while Happy Sport is more accessible at around 15,000 EUR. 
+
+Interestingly, the mean price is 30,000 EUR but the median is only 21,000 EUR, showing that a few ultra-luxury pieces skew the average. This right-skewed distribution is typical in luxury goods.
+
+I also discovered that the same watch can have different prices in different countries, which suggests regional pricing strategies based on local taxes, competition, and purchasing power."
+
+
+---
+
+## Next Steps
+
+1. Build Power BI dashboard to visualize these insights
+2. Create interactive filters by collection and country
+3. Add a "price comparison" view for same watch across regions
