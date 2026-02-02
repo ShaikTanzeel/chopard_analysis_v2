@@ -2,6 +2,8 @@
 
 A data analysis project exploring pricing strategies of Chopard luxury watches across different regions and collections.
 
+![Chopard Power BI Dashboard](data/visualizations/dashboard_preview.png)
+
 ## Project Overview
 
 This project analyzes pricing data from Chopard's official website across 5 countries (Switzerland, USA, UK, Japan, EU) to understand:
