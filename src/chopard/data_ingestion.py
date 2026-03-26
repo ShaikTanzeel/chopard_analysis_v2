@@ -1,7 +1,5 @@
-"""
-Data Ingestion Module
-Handles extracting raw data from BigQuery and parsing it correctly.
-"""
+# Data Ingestion: getting data from BQ or Excel
+
 
 import pandas as pd
 from io import StringIO
@@ -54,12 +52,8 @@ def fetch_bigquery_data(table_name="raw_pricing"):
 
 
 def load_local_data(file_path="data/raw_chopard_data.csv.xlsx"):
-    """
-    Loads data from local Excel file.
-    
-    The Excel file has a quirk - data was saved as CSV with semicolons,
-    but Excel split it into multiple columns. We merge them back together.
-    """
+    # Load from Excel but fix the weird spacing issues
+
     print(f"Loading local file: {file_path}...")
     
     # Read Excel file without header

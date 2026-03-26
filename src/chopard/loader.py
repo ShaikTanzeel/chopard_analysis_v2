@@ -3,9 +3,8 @@ from google.cloud import bigquery
 from chopard.config import PROJECT_ID, DATASET_ID
 
 def upload_raw_data_to_bigquery(csv_file_path, table_name):
-    """
-    Reads a local CSV and uploads it to BigQuery as a new table.
-    """
+    # Read Excel and dump it into BQ
+
     print(f"Reading data from {csv_file_path}...")
     df = pd.read_excel(csv_file_path)
     

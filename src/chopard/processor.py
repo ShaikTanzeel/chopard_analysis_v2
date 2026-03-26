@@ -1,7 +1,5 @@
-"""
-Data Processing Module
-Handles cleaning, transforming, and currency conversion of watch data.
-"""
+# Data Processing: cleans things up and converts currencies
+
 
 import pandas as pd
 from google.cloud import bigquery
@@ -10,15 +8,8 @@ from chopard.exchange import get_exchange_rates
 
 
 def clean_data(df):
-    """
-    Cleans the raw watch data by handling missing values and fixing data types.
-    
-    Steps:
-    1. Remove rows with NULL prices
-    2. Remove rows without currency
-    3. Convert price strings to numbers
-    4. Remove duplicate entries
-    """
+    # Cleaning the raw data: dropping nulls, fixing currencies, and converting price to float
+
     print("Cleaning data...")
     initial_count = len(df)
     
@@ -54,12 +45,8 @@ def clean_data(df):
 
 
 def convert_prices_to_eur(df, rates_dict):
-    """
-    Converts all prices to EUR using exchange rates.
-    
-    Why EUR? It's a stable currency and Chopard is a European brand,
-    so it makes sense to compare all prices in EUR.
-    """
+    # Change everything to EUR so we can compare prices easily
+
     print("Converting prices to EUR...")
     
     df = df.copy()
@@ -80,12 +67,8 @@ def convert_prices_to_eur(df, rates_dict):
 
 
 def convert_single_price(price, currency, rates_dict):
-    """
-    Converts a single price to EUR.
-    
-    The exchange rate tells us: 1 EUR = X currency
-    So to convert: price_eur = price / rate
-    """
+    # Simple conversion: price / rate
+
     if pd.isna(price) or pd.isna(currency):
         return None
     
@@ -103,9 +86,8 @@ def convert_single_price(price, currency, rates_dict):
 
 
 def process_data(df):
-    """
-    Main processing pipeline: Clean -> Get Rates -> Convert Currency
-    """
+    # This is the main steps: cleaning -> rates -> conversion
+
     print("\n" + "="*50)
     print("STARTING DATA PROCESSING")
     print("="*50 + "\n")
@@ -132,10 +114,8 @@ def process_data(df):
 
 
 def push_to_bigquery(df, dataset_id, table_name):
-    """
-    Uploads processed data back to BigQuery.
-    This allows Power BI to connect directly to the cleaned data.
-    """
+    # Upload the final cleaned data back to BQ for Power BI
+
     print(f"\nPushing to BigQuery: {PROJECT_ID}.{dataset_id}.{table_name}...")
     
     client = bigquery.Client()

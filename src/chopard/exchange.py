@@ -1,20 +1,13 @@
-"""
-Exchange Rate Module
-Fetches live currency exchange rates from a public API.
-"""
+# Exchange Rates: pulling live data from API
+
 
 import requests
 import json
 from datetime import datetime
 
 def get_exchange_rates(base_currency="EUR"):
-    """
-    Fetches the latest exchange rates from a public API.
-    
-    Returns:
-        Dictionary where keys are currencies (USD, GBP, etc.) 
-        and values are the rate relative to the base currency.
-    """
+    # Hit the API and get latest rates for EUR
+
     api_url = f"https://api.exchangerate-api.com/v4/latest/{base_currency}"
     
     try:

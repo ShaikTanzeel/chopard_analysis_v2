@@ -1,135 +1,68 @@
-# Chopard Watch Pricing Analysis
+# Chopard Watch Pricing Analysis (Portfolio Project)
 
-A data analysis project exploring pricing strategies of Chopard luxury watches across different regions and collections.
+Hey! This is a project where I took a deep dive into how Chopard prices their luxury watches across different parts of the world. Luxury brands usually have different pricing strategies for different regions, and I wanted to see exactly how that looks for a brand like Chopard.
 
 ![Chopard Power BI Dashboard](data/visualizations/dashboard_preview.png)
 
-## Project Overview
+## What's the point of this?
 
-This project analyzes pricing data from Chopard's official website across 5 countries (Switzerland, USA, UK, Japan, EU) to understand:
+I analyzed pricing data for about 990 watches across 5 major regions: Switzerland (home of Chopard), USA, UK, Japan, and the EU. The main goal was to answer a few simple questions:
+- Are luxury watches actually cheaper in Europe?
+- Which collections are the most expensive? (Spoiler: It's L'Heure du Diamant)
+- How messy is the data when it comes straight from the source?
 
-- How prices vary across different watch collections
-- Regional pricing differences for the same products
-- Price distribution patterns in the luxury watch market
+## Key Things I Found
 
-## Key Findings
+- **990 watches** made it through my cleaning process.
+- **Price range** is huge: from €3,750 all the way up to €110,000 for the high-end pieces.
+- **Average price** sits around €30,294, but there are plenty of "entry-level" (for luxury) Happy Sport watches around €15k.
+- **Regional differences** are definitely there—suggesting that brand positioning changes depending on where you are.
 
-- **990 watches** analyzed after data cleaning
-- **Price range**: €3,750 - €110,000
-- **Average price**: €30,294 (Median: €21,000)
-- **L'Heure du Diamant** is the most expensive collection (~€70,000 avg)
-- **Happy Sport** is the most accessible collection (~€15,000 avg)
-- Prices vary by region, suggesting regional pricing strategies
+## How I Built It (The Pipeline)
+
+The data was actually pretty messy. BigQuery had it stored in a weird semicolon-delimited format in a single column, so I had to get creative with `StringIO` to parse it properly. 
+
+1. **Extract**: I built it to toggle between local Excel files and live BigQuery data.
+2. **Transform**: 
+   - Cleaned out the 'NULL' strings and weird duplicates.
+   - Used a live API (exchangerate-api.com) to get fresh EUR rates so comparisons are fair.
+   - Standardized the collection names (found a lot of extra quotes and spaces).
+3. **Load**: The final cleaned data goes into a CSV and back into BigQuery for visualization.
+
+```bash
+# To run the whole thing:
+python scripts/run_pipeline.py --bigquery
+```
 
 ## Project Structure
 
-```
-chopard_pricing_analysis/
-├── data/
-│   ├── final_processed_data.csv    # Cleaned dataset
-│   ├── visualizations/             # Generated charts
-│   └── eda_summary_report.txt      # Analysis summary
-├── notebooks/
-│   ├── 01_exploratory_data_analysis.ipynb  # EDA notebook
-│   └── Notes                       # Analysis notes
-├── scripts/
-│   ├── run_pipeline.py             # Main ETL pipeline
-│   └── run_eda.py                  # EDA script
-├── src/chopard/
-│   ├── config.py                   # Configuration
-│   ├── data_ingestion.py           # Data loading
-│   ├── processor.py                # Data cleaning & transformation
-│   └── exchange.py                 # Currency conversion
-├── requirements.txt
-└── README.md
-```
+I tried to keep it organized like a real-world data engineering project:
+- `/src/chopard/`: All the core logic (Ingestion, Processing, Exchange Rates).
+- `/scripts/`: One-click runners for the pipeline and EDA.
+- `/notebooks/`: Where I did the initial messy exploration and charting.
+- `/data/`: Where the final cleaned results and charts live.
 
 ## Tech Stack
 
-| Tool | Purpose |
-|------|---------|
-| Python | Data processing and analysis |
-| Pandas | Data manipulation |
-| Matplotlib/Seaborn | Visualizations |
-| BigQuery | Cloud data warehouse |
-| Power BI | Dashboard (coming soon) |
+- **Python & Pandas**: For all the heavy lifting and data cleaning.
+- **BigQuery**: Used this as the "Source of Truth" warehouse.
+- **Matplotlib/Seaborn**: For those quick EDA charts to spot outliers.
+- **Power BI**: Working on a dash right now to make it look premium.
 
-## Data Pipeline
+## How to set it up
 
-The ETL (Extract-Transform-Load) pipeline:
-
-1. **Extract**: Load raw watch data from Excel/BigQuery
-2. **Transform**: 
-   - Remove null prices and duplicates
-   - Convert all currencies to EUR using live exchange rates
-   - Clean and standardize collection names
-3. **Load**: Save processed data to CSV and BigQuery
-
-```bash
-# Run the pipeline
-python scripts/run_pipeline.py
-```
-
-## Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/chopard_pricing_analysis.git
-cd chopard_pricing_analysis
-```
-
-2. Create virtual environment:
-```bash
-python -m venv venv
-venv\Scripts\activate  # Windows
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Create `.env` file with your credentials:
+1. Clone it: `git clone <repo-url>`
+2. Install the requirements: `pip install -r requirements.txt`
+3. Set up your `.env` with your GCP project details:
 ```
 GCP_PROJECT_ID=your-project-id
 BIGQUERY_DATASET_ID=your-dataset
 ```
+4. Run it: `python scripts/run_pipeline.py`
 
-## Running the Analysis
+## About the Author
 
-**Option 1: Run the pipeline**
-```bash
-python scripts/run_pipeline.py
-```
+This project is part of my portfolio to show how I handle end-to-end data pipelines—from dealing with messy raw data to calculating live currency conversions and prepping it for a business dashboard.
 
-**Option 2: Explore the notebook**
-```bash
-jupyter notebook notebooks/01_exploratory_data_analysis.ipynb
-```
-
-**Option 3: Run EDA script**
-```bash
-python scripts/run_eda.py
-```
-
-## Sample Visualizations
-
-The analysis generates charts showing:
-- Price distribution across all watches
-- Average price comparison by collection
-- Regional price differences
-- Collection composition
-
-## Future Work
-
-- [ ] Power BI interactive dashboard
-- [ ] Time series analysis (if historical data becomes available)
-- [ ] Competitor price comparison (Rolex, Omega, etc.)
-
-## Author
-
-Built as a data analysis portfolio project to demonstrate ETL pipelines, exploratory data analysis, and data visualization skills.
-
-## License
-
-MIT License - feel free to use this project as a learning reference.
+---
+*MIT License - feel free to fork it or use it as a reference for your own projects!*

@@ -1,7 +1,5 @@
-"""
-Exploratory Data Analysis (EDA) Module
-Loads data and performs basic analysis to understand the dataset.
-"""
+# EDA: Basic analysis to see what the data looks like
+
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -9,9 +7,8 @@ import seaborn as sns
 from chopard.processor import extract_data_from_bigquery
 
 def perform_eda():
-    """
-    Loads data and performs exploratory analysis to understand structure and quality.
-    """
+    # Just a quick check on missing values and distributions
+
     # Step 1: Fetch data from BigQuery
     print("Step 1: Fetching data...")
     df = extract_data_from_bigquery("raw_pricing")

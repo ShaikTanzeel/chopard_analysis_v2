@@ -33,11 +33,8 @@ def main(use_bigquery=False):
     Args:
         use_bigquery: If True, fetch from BigQuery. If False, use local Excel file.
     """
-    print("\n" + "="*60)
-    print("CHOPARD PRICING ANALYSIS PIPELINE")
-    print("="*60)
-    print(f"Mode: {'BigQuery' if use_bigquery else 'Local File'}")
-    print("="*60 + "\n")
+    print("\n--- Starting Chopard Pricing Pipeline ---")
+    print(f"Running in mode: {'BigQuery' if use_bigquery else 'Local File'}\n")
     
     # Step 1: Load raw data
     print("STEP 1/4: Loading raw data...")
